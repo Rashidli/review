@@ -96,6 +96,8 @@
         });
     });
 </script>
+<script src="{{ asset('/sw.js') }}"></script>
+
 </body>
 
 </html>

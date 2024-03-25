@@ -30,7 +30,7 @@
                                             <tr data-repeater-item>
                                                 <td>
                                                     <div class="mb-3">
-                                                        <input type="hidden" name="plan_id" value="{{$plan->id}}">
+                                                        <input type="hidden" name="plan_id[]" value="{{$plan->id}}">
                                                         <input class="form-control" type="text" value="{{$plan->title}}" disabled>
                                                         @if($errors->first('car_id')) <small class="form-text text-danger">{{$errors->first('car_id')}}</small> @endif
                                                     </div>
@@ -38,13 +38,13 @@
                                                 <td>
                                                     <div style="display: flex; align-items: center">
                                                         <div class="mb-3">
-                                                            <input class="form-control" type="number" name="monthly_price" value="{{old('monthly_price')}}">
+                                                            <input class="form-control" type="number" name="monthly_price[]" value="{{old('monthly_price')}}">
 
                                                             @if($errors->first('monthly_price')) <small class="form-text text-danger">{{$errors->first('monthly_price')}}</small> @endif
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="col-form-label">kvm</label>
-                                                            <input type="checkbox" name="monthly_price_per_square_meter">
+                                                            <input type="checkbox" name="monthly_price_per_square_meter[]">
                                                         </div>
                                                     </div>
 
@@ -52,12 +52,12 @@
                                                 <td>
                                                     <div style="display: flex; align-items: center">
                                                         <div class="mb-3">
-                                                            <input class="form-control" type="number" name="daily_price" value="{{old('daily_price')}}">
+                                                            <input class="form-control" type="number" name="daily_price[]" value="{{old('daily_price')}}">
                                                             @if($errors->first('daily_price')) <small class="form-text text-danger">{{$errors->first('daily_price')}}</small> @endif
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="col-form-label">kvm</label>
-                                                            <input type="checkbox" name="daily_price_per_square_meter">
+                                                            <input type="checkbox" name="daily_price_per_square_meter[]">
                                                         </div>
                                                     </div>
 

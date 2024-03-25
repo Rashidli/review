@@ -21,6 +21,18 @@
                                 </div>
 
                                 <div class="mb-3">
+                                    <label class="col-form-label">Fəhlə sayı</label>
+                                    <input class="form-control" type="text" name="worker_count" value="{{$car->worker_count}}">
+                                    @if($errors->first('worker_count')) <small class="form-text text-danger">{{$errors->first('worker_count')}}</small> @endif
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="col-form-label">Fəhlə qiyməti</label>
+                                    <input class="form-control" type="text" name="worker_price" value="{{$car->worker_price}}">
+                                    @if($errors->first('worker_price')) <small class="form-text text-danger">{{$errors->first('worker_price')}}</small> @endif
+                                </div>
+
+                                <div class="mb-3">
                                     <button class="btn btn-primary">Yadda saxla</button>
                                 </div>
 

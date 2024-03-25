@@ -41,6 +41,8 @@ class CarController extends Controller
 
         $request->validate([
             'title'=>'required',
+            'worker_count'=>'required',
+            'worker_price'=>'required',
         ]);
 
 
@@ -48,6 +50,8 @@ class CarController extends Controller
         $car = new Car();
 
         $car->title = $request->title;
+        $car->worker_count = $request->worker_count;
+        $car->worker_price = $request->worker_price;
 
         $car->save();
 
@@ -81,11 +85,13 @@ class CarController extends Controller
 
         $request->validate([
             'title'=>'required',
+            'worker_count'=>'required',
+            'worker_price'=>'required',
         ]);
 
-
         $car->title = $request->title;
-
+        $car->worker_count = $request->worker_count;
+        $car->worker_price = $request->worker_price;
 
         $car->save();
 

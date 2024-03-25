@@ -34,20 +34,20 @@
                                         <tr data-repeater-item>
                                             <td>
                                                 <div class="mb-3">
-                                                    <input type="hidden" name="car_id" value="{{$item->pivot->car_id}}">
+                                                    <input type="hidden" name="car_id[]" value="{{$item->pivot->car_id}}">
                                                     <input class="form-control" type="text" disabled value="@foreach($cars as $car){{$item->pivot->car_id == $car->id ? $car->title : ''}}@endforeach">
                                                     @if($errors->first('car_id')) <small class="form-text text-danger">{{$errors->first('car_id')}}</small> @endif
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="mb-3">
-                                                    <input class="form-control" type="number" name="min_price" value="{{$item->pivot->min_price}}">
+                                                    <input class="form-control" type="number" name="min_price[]" value="{{$item->pivot->min_price}}">
                                                     @if($errors->first('min_price')) <small class="form-text text-danger">{{$errors->first('min_price')}}</small> @endif
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="mb-3">
-                                                    <input class="form-control" type="number" name="max_price" value="{{$item->pivot->max_price}}">
+                                                    <input class="form-control" type="number" name="max_price[]" value="{{$item->pivot->max_price}}">
                                                     @if($errors->first('max_price')) <small class="form-text text-danger">{{$errors->first('max_price')}}</small> @endif
                                                 </div>
                                             </td>

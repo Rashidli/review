@@ -30,20 +30,20 @@
                                             <tr data-repeater-item>
                                                 <td>
                                                     <div class="mb-3">
-                                                        <input type="hidden" name="transport_id" value="{{$transport->id}}">
+                                                        <input type="hidden" name="transport_id[]" value="{{$transport->id}}">
                                                         <input class="form-control" type="text" value="{{$transport->title}}" disabled>
                                                         @if($errors->first('car_id')) <small class="form-text text-danger">{{$errors->first('car_id')}}</small> @endif
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="mb-3">
-                                                        <input class="form-control" type="number" name="monthly_price" value="{{old('monthly_price')}}">
+                                                        <input class="form-control" type="number" name="monthly_price[]" value="{{old('monthly_price')}}">
                                                         @if($errors->first('monthly_price')) <small class="form-text text-danger">{{$errors->first('monthly_price')}}</small> @endif
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="mb-3">
-                                                        <input class="form-control" type="number" name="daily_price" value="{{old('daily_price')}}">
+                                                        <input class="form-control" type="number" name="daily_price[]" value="{{old('daily_price')}}">
                                                         @if($errors->first('daily_price')) <small class="form-text text-danger">{{$errors->first('daily_price')}}</small> @endif
                                                     </div>
                                                 </td>

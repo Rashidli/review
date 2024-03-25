@@ -1,45 +1,192 @@
 
-@include('includes.header')
+<!doctype html>
+<html lang="en">
 
-<div class="main-content">
-    <div class="page-content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body">
-                            @if(session('message'))
-                                <div class="alert alert-success">{{session('message')}}</div>
-                            @endif
-                            <h4 class="card-title">Sifariş</h4>
-                            <br>
-                            <br>
+<head>
 
-                            <div class="custom-table">
-                                <table class="table table-bordered mb-0">
+    <meta charset="utf-8" />
+    <title>Landing page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesdesign" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link href="{{asset('assets/css/select2.css')}}" rel="stylesheet" />
+    <!-- jquery.vectormap css -->
+    <link href="{{asset('assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css')}}" rel="stylesheet" type="text/css" />
 
-                                    <thead>
-                                    <tr>
-                                        <th>Sifarişçi</th>
-                                        <th>Baxış tarixi</th>
-                                        <th>Əməkdaşlıq</th>
-                                        <th>Ümumi məbləğ</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
+    <!-- DataTables -->
+    <link href="{{asset('assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/libs/datatables.net-select-bs4/css//select.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="{{asset('assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="{{asset('assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
+
+    <!-- Bootstrap Css -->
+    <link href="{{asset('assets/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="{{asset('assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
+    <style>
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px; /* Adjust as needed */
+        }
+
+        .custom-table th, .custom-table td {
+            border: 1px solid #ddd; /* Border color */
+            padding: 8px;
+            text-align: left;
+        }
+
+        .custom-table th {
+            background-color: #f2f2f2; /* Header background color */
+        }
+
+        .custom-table tbody tr:nth-child(even) {
+            background-color: #f9f9f9; /* Even row background color */
+        }
+
+        /*.custom-table tbody tr:hover {*/
+        /*    background-color: #e0e0e0; !* Hover row background color *!*/
+        /*}*/
+
+        .custom-table tfoot {
+            background-color: #f2f2f2; /* Footer background color */
+        }
+
+        .custom-table td {
+            width: 17%; /* Set the width for the first 4 td elements */
+        }
+
+        .custom-table td:nth-last-child(-n+4) {
+            width: 8%; /* Set the width for the last 4 td elements */
+        }
+
+        /*.custom-table td input[type="number"] {*/
+        /*    width: 80px; !* Set a specific width for number input td elements *!*/
+        /*}*/
+        .custom-table td input, select{
+            width: 100%;
+        }
+
+        .custom-table button {
+            /* Add styles for your delete and create buttons */
+            color: #fff;
+            background-color: #dc3545; /* Delete button color */
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .custom-table button.btn-success {
+            background-color: #28a745; /* Create button color */
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+
+<body data-topbar="dark">
+
+<!-- <body data-layout="horizontal" data-topbar="dark"> -->
+
+<!-- Begin page -->
+<div id="layout-wrapper">
+
+    <header id="page-topbar" style="background-color: white">
+        <div class="navbar-header">
+            <div class="d-flex">
+                <!-- LOGO -->
+                <div class="navbar-brand-box">
+
+                    <a href="" class="logo logo-dark">
+                                <span class="logo-sm">
+                                    <img src="{{asset('assets/images/logo-sm.png')}}" alt="logo-sm" height="22">
+                                </span>
+                        <span class="logo-lg">
+                                    <img src="{{asset('assets/images/logo-dark.png')}}" alt="logo-dark" height="20">
+                                </span>
+                    </a>
+
+                    <a href="#" class="logo logo-light">
+                                <span class="logo-sm">
+                                    <img src="{{asset('assets/images/57428360.png')}}" alt="logo-sm-light" height="22">
+                                </span>
+                        <span class="logo-lg">
+                                    <img style="width: 100px; height: 70px" src="{{asset('assets/images/57428360.png')}}" alt="logo-light" height="20">
+                                </span>
+                    </a>
+
+                </div>
+
+
+
+
+            </div>
+
+
+        </div>
+    </header>
+
+
+
+
+    <div class="">
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                @if(session('message'))
+                                    <div class="alert alert-success">{{session('message')}}</div>
+                                @endif
+                                <h4 class="card-title">Sifariş</h4>
+                                <br>
+                                <br>
+
+                                <div class="custom-table table-responsive">
+                                    <table class="table responsive  table-bordered mb-0">
+
+                                        <thead>
+                                        <tr>
+                                            <th>Sifarişçi</th>
+                                            <th>Baxış tarixi</th>
+                                            <th>Əməkdaşlıq</th>
+                                            <th>Nömrə</th>
+                                            <th>Email</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
 
                                         <tr>
                                             <td>{{$order->customer_name}}</td>
                                             <td>{{$order->review_date}}</td>
                                             <td>{{$order->review_type}}</td>
-                                            <td>{{($order->order_directions->sum('direction_total')) + ($order->order_masters->sum('thing_total')) + ($order->order_workers->sum('worker_total'))}}</td>
+                                            <td>{{$order->phone}}</td>
+                                            <td>{{$order->email}}</td>
                                         </tr>
 
 
-                                    </tbody>
-                                </table>
-                                <br>
-                            </div>
+                                        </tbody>
+                                    </table>
+                                    <br>
+                                </div>
                                 @if(count($order->order_products))
                                     <div class="row table-responsive">
                                         <div class="col-12">
@@ -229,51 +376,35 @@
                                         @foreach($order->order_images as $image)
                                             <div class="col-md-2" >
                                                 <div style="width: 100%; height: 150px; margin: 30px 0">
-                                                    <img src="{{ asset('storage/' . $image->image) }}" style="height: 100%; width: 100%; object-fit: contain" alt="">
+                                                    <img src="{{ asset('storage/' . $image->image) }}" style="height: 100%; width: 100%; object-fit: cover" alt="">
                                                     {{--                                                        <p class="btn btn-danger delete-image-btn" data-image-id="{{ $image->id }}"><i class="fas fa-trash"></i></p>--}}
                                                 </div>
                                             </div>
                                         @endforeach
 
+
                                     </div>
                                 @endif
-                            <div class="row">
 
-
-                                <div class="col-2">
-                                    <form action="{{route('change_status', $order->id)}}" method="post">
-                                        {{ method_field('PUT') }}
-                                        @csrf
-                                        <div class="mb-3">
-                                            <label class="col-form-label">Status</label>
-                                            <select  name="status" class="form-control car_list">
-{{--                                                <option selected value></option>--}}
-                                                    <option value="{{\App\Enum\Status::review}}" {{\App\Enum\Status::review == $order->status ? 'selected' : ''}}>{{\App\Enum\Status::getStatusLabel(1)}}</option>
-                                                    <option value="{{\App\Enum\Status::planning}}" {{\App\Enum\Status::planning == $order->status ? 'selected' : ''}}>{{\App\Enum\Status::getStatusLabel(2)}}</option>
-                                                    <option value="{{\App\Enum\Status::cancel}}" {{\App\Enum\Status::cancel == $order->status ? 'selected' : ''}}>{{\App\Enum\Status::getStatusLabel(3)}}</option>
-                                            </select>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            @if($order->customer_full_answer)
+                                                <p>Təşəkkür edirik. Sizinlə tezliklə əlaqə saxlanılacaq</p>
+                                            @else
+                                                <a class="btn-primary btn" href="{{route('customer_full_answer' , $order->id)}}">
+                                                    Təsdiqlə
+                                                </a>
+                                            @endif
                                         </div>
-{{--                                        <div class="mb-3">--}}
-{{--                                            <label class="col-form-label">Rəy</label>--}}
-{{--                                            <textarea class="form-control direction_price" name="comment"></textarea>--}}
-{{--                                        </div>--}}
-                                        <div class="mb-3">
-                                            <button class="btn btn-primary">Yadda saxla</button>
-                                        </div>
-                                    </form>
-                                </div>
-{{--                                <div class="col-2">--}}
-{{--                                    <p>Rəy: {{$order->comment == null ? 'Rəy yoxdur' : $order->comment}}</p>--}}
-{{--                                </div>--}}
+                                    </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
 

@@ -5,6 +5,8 @@ Version: 2.0.0
 Contact: themesdesign.in@gmail.com
 File: Main Css File
 */
+/* Chrome, Safari, Edge, Opera */
+
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&display=swap");
 @font-face {
   font-family: "Inter";

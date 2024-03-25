@@ -45,29 +45,26 @@ class TransportWarehouseController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request->all());
         DB::beginTransaction();
 
         try {
-//            $request->validate([
-//                'title' => 'required',
-//                'transport_warehouse.*.transport_warehouse_transport_id' => 'required',
-//                'transport_warehouse.*.min_price' => 'nullable|numeric',
-//                'transport_warehouse.*.max_price' => 'nullable|numeric',
-//            ]);
+
 
             $transport_warehouse = new TransportWarehouse();
             $transport_warehouse->title = $request->title;
             $transport_warehouse->save();
 
-            $transports = $request->transports;
+            $transportIds = $request->transport_id;
+            $monthPrices = $request->monthly_price;
+            $dayPrices = $request->daily_price;
+
 
             $transportData = [];
 
-            foreach ($transports as $transport) {
-                $transportData[$transport['transport_id']] = [
-                    'monthly_price' => $transport['monthly_price'],
-                    'daily_price' => $transport['daily_price'],
+            foreach ($transportIds as $index => $transport_id) {
+                $transportData[$transport_id] = [
+                    'monthly_price' => $monthPrices[$index],
+                    'daily_price' => $dayPrices[$index],
                 ];
             }
 
@@ -111,28 +108,27 @@ class TransportWarehouseController extends Controller
 
     public function update(Request $request, $id)
     {
-
         DB::beginTransaction();
 
         try {
-//            $request->validate([
-//                'title' => 'required',
-//                'transport_warehouse.*.min_price' => 'nullable|numeric',
-//                'transport_warehouse.*.max_price' => 'nullable|numeric',
-//            ]);
-
             $transport_warehouse = TransportWarehouse::findOrFail($id);
             $transport_warehouse->title = $request->title;
             $transport_warehouse->save();
 
-            $transports = $request->transports;
+            $transportIds = $request->transport_id;
+            $minPrices = $request->monthly_price;
+            $maxPrices = $request->daily_price;
+
+            if (count($transportIds) !== count($minPrices) || count($minPrices) !== count($maxPrices)) {
+                throw new \Exception("Invalid input data.");
+            }
 
             $transportData = [];
 
-            foreach ($transports as $transport) {
-                $transportData[$transport['transport_id']] = [
-                    'monthly_price' => $transport['monthly_price'],
-                    'daily_price' => $transport['daily_price'],
+            foreach ($transportIds as $index => $transport_id) {
+                $transportData[$transport_id] = [
+                    'monthly_price' => $minPrices[$index],
+                    'daily_price' => $maxPrices[$index],
                 ];
             }
 
@@ -146,6 +142,7 @@ class TransportWarehouseController extends Controller
             return $exception->getMessage();
         }
     }
+
 
 
     /**

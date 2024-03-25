@@ -33,20 +33,20 @@
                                         <tr data-repeater-item>
                                             <td>
                                                 <div class="mb-3">
-                                                    <input type="hidden" name="transport_id" value="{{$item->pivot->transport_id}}">
+                                                    <input type="hidden" name="transport_id[]" value="{{$item->pivot->transport_id}}">
                                                     <input class="form-control" type="text" disabled value="@foreach($transports as $transport){{$item->pivot->transport_id == $transport->id ? $transport->title : ''}}@endforeach">
                                                     @if($errors->first('transport_id')) <small class="form-text text-danger">{{$errors->first('transport_id')}}</small> @endif
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="mb-3">
-                                                    <input class="form-control" type="number" name="monthly_price" value="{{$item->pivot->monthly_price}}">
+                                                    <input class="form-control" type="number" name="monthly_price[]" value="{{$item->pivot->monthly_price}}">
                                                     @if($errors->first('monthly_price')) <small class="form-text text-danger">{{$errors->first('monthly_price')}}</small> @endif
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="mb-3">
-                                                    <input class="form-control" type="number" name="daily_price" value="{{$item->pivot->daily_price}}">
+                                                    <input class="form-control" type="number" name="daily_price[]" value="{{$item->pivot->daily_price}}">
                                                     @if($errors->first('daily_price')) <small class="form-text text-danger">{{$errors->first('daily_price')}}</small> @endif
                                                 </div>
                                             </td>

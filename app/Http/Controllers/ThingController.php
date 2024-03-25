@@ -48,29 +48,25 @@ class ThingController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request->all());
+
         DB::beginTransaction();
 
         try {
-//            $request->validate([
-//                'title' => 'required',
-//                'thing.*.thing_service_id' => 'required',
-//                'thing.*.min_price' => 'nullable|numeric',
-//                'thing.*.max_price' => 'nullable|numeric',
-//            ]);
 
             $thing = new Thing();
             $thing->title = $request->title;
             $thing->save();
 
-            $thing_services = $request->thing_services;
-
             $thingServiceData = [];
 
-            foreach ($thing_services as $thing_service) {
-                $thingServiceData[$thing_service['thing_service_id']] = [
-                    'min_price' => $thing_service['min_price'],
-                    'max_price' => $thing_service['max_price'],
+            $thingServiceIds = $request->thing_service_id;
+            $minPrices = $request->min_price;
+            $maxPrices = $request->max_price;
+
+            foreach ($thingServiceIds as $index => $thingServiceId) {
+                $thingServiceData[$thingServiceId] = [
+                    'max_price' => $maxPrices[$index],
+                    'min_price' => $minPrices[$index],
                 ];
             }
 
@@ -113,28 +109,27 @@ class ThingController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+//        dd($request->all());
         DB::beginTransaction();
 
         try {
-//            $request->validate([
-//                'title' => 'required',
-//                'thing.*.min_price' => 'nullable|numeric',
-//                'thing.*.max_price' => 'nullable|numeric',
-//            ]);
 
             $thing = Thing::findOrFail($id);
             $thing->title = $request->title;
             $thing->save();
 
-            $thing_services = $request->thing_services;
 
             $thingServiceData = [];
 
-            foreach ($thing_services as $thing_service) {
-                $thingServiceData[$thing_service['thing_service_id']] = [
-                    'min_price' => $thing_service['min_price'],
-                    'max_price' => $thing_service['max_price'],
+            $thingServiceIds = $request->thing_service_id;
+            $minPrices = $request->min_price;
+            $maxPrices = $request->max_price;
+
+
+            foreach ($thingServiceIds as $index => $thingServiceId) {
+                $thingServiceData[$thingServiceId] = [
+                    'max_price' => $maxPrices[$index],
+                    'min_price' => $minPrices[$index],
                 ];
             }
 
@@ -142,7 +137,7 @@ class ThingController extends Controller
 
             DB::commit();
 
-            return redirect()->route('things.index')->with('message', 'Price updated successfully');
+            return redirect()->back()->with('message', 'Price updated successfully');
         } catch (\Exception $exception) {
             DB::rollBack();
             return $exception->getMessage();

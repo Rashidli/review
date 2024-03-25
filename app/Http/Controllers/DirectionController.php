@@ -45,30 +45,25 @@ class DirectionController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request->all());
+
+
         DB::beginTransaction();
 
         try {
-//            $request->validate([
-//                'title' => 'required',
-//                'direction.*.direction_car_id' => 'required',
-//                'direction.*.min_price' => 'nullable|numeric',
-//                'direction.*.max_price' => 'nullable|numeric',
-//            ]);
 
             $direction = new Direction();
             $direction->to = $request->to;
             $direction->distance = $request->distance;
             $direction->save();
 
-            $direction_cars = $request->direction_cars;
-
             $directionCarData = [];
 
-            foreach ($direction_cars as $direction_car) {
-                $directionCarData[$direction_car['car_id']] = [
-//                    'min_price' => $direction_car['min_price'],
-                    'max_price' => $direction_car['max_price'],
+            $carIds = $request->car_id;
+            $maxPrices = $request->max_price;
+
+            foreach ($carIds as $index => $carId) {
+                $directionCarData[$carId] = [
+                    'max_price' => $maxPrices[$index],
                 ];
             }
 
@@ -111,40 +106,36 @@ class DirectionController extends Controller
     public function update(Request $request, $id)
     {
 
+
         DB::beginTransaction();
 
         try {
-//            $request->validate([
-//                'title' => 'required',
-//                'direction.*.min_price' => 'nullable|numeric',
-//                'direction.*.max_price' => 'nullable|numeric',
-//            ]);
-
             $direction = Direction::findOrFail($id);
-            $direction->to = $request->to;
+            $direction->title = $request->title;
             $direction->distance = $request->distance;
             $direction->save();
 
-            $direction_cars = $request->direction_cars;
-
             $directionCarData = [];
 
-            foreach ($direction_cars as $direction_car) {
-                $directionCarData[$direction_car['car_id']] = [
-//                    'min_price' => $direction_car['min_price'],
-                    'max_price' => $direction_car['max_price'],
+            $carIds = $request->car_id;
+            $maxPrices = $request->max_price;
+
+            foreach ($carIds as $index => $carId) {
+                $directionCarData[$carId] = [
+                    'max_price' => $maxPrices[$index],
                 ];
             }
 
-            $direction->direction_cars()->sync($directionCarData);
+            $direction->direction_cars()->sync($directionCarData, false);
 
             DB::commit();
 
-            return redirect()->route('directions.index')->with('message', 'Price updated successfully');
+            return redirect()->back()->with('message', 'Price updated successfully');
         } catch (\Exception $exception) {
             DB::rollBack();
             return $exception->getMessage();
         }
+
     }
 
 

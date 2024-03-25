@@ -19,61 +19,39 @@
                                 </div>
 
 
-                                <table class="repeater">
+                                <table>
                                     <thead>
                                         <tr>
                                             <th>Xidmət</th>
                                             <th>Min qiymət</th>
                                             <th>Max qiymət</th>
-{{--                                            <th>Sil</th>--}}
                                         </tr>
                                     </thead>
-                                    <tbody data-repeater-list="thing_services">
+                                    <tbody>
                                         @foreach($thing->thing_services as $item)
-                                            <tr data-repeater-item>
+                                            <tr>
                                                 <td>
-{{--                                                    <div class="mb-3">--}}
-{{--                                                        <select name="thing_service_id" class="form-control">--}}
-{{--                                                            <option disabled selected>----</option>--}}
-{{--                                                            @foreach($thing_services as $thing_service)--}}
-{{--                                                                <option value="{{$thing_service->id}}" {{$item->pivot->thing_service_id == $thing_service->id ? 'selected' : ''}}>{{$thing_service->title}}</option>--}}
-{{--                                                            @endforeach--}}
-{{--                                                        </select>--}}
-{{--                                                        @if($errors->first('thing_service_id')) <small class="form-text text-danger">{{$errors->first('thing_service_id')}}</small> @endif--}}
-{{--                                                    </div>--}}
                                                     <div class="mb-3">
-                                                        <input type="hidden" name="thing_service_id" value="{{$item->pivot->thing_service_id}}">
+                                                        <input type="hidden" name="thing_service_id[]" value="{{$item->pivot->thing_service_id}}">
                                                         <input class="form-control" type="text" disabled   value="@foreach($thing_services as $thing_service){{$item->pivot->thing_service_id == $thing_service->id ? $thing_service->title : ''}}@endforeach">
                                                         @if($errors->first('think_service_id')) <small class="form-text text-danger">{{$errors->first('think_service_id')}}</small> @endif
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="mb-3">
-                                                        <input class="form-control" type="number" name="min_price" value="{{$item->pivot->min_price}}">
+                                                        <input class="form-control" type="number" name="min_price[]" value="{{$item->pivot->min_price}}">
                                                         @if($errors->first('min_price')) <small class="form-text text-danger">{{$errors->first('min_price')}}</small> @endif
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="mb-3">
-                                                        <input class="form-control" type="number" name="max_price" value="{{$item->pivot->max_price}}">
+                                                        <input class="form-control" type="number" name="max_price[]" value="{{$item->pivot->max_price}}">
                                                         @if($errors->first('max_price')) <small class="form-text text-danger">{{$errors->first('max_price')}}</small> @endif
                                                     </div>
                                                 </td>
-{{--                                                <td>--}}
-{{--                                                    <button data-repeater-delete class="btn btn-danger"  type="button">--}}
-{{--                                                        <i class="fas fa-trash-alt"></i>--}}
-{{--                                                    </button>--}}
-{{--                                                    <br>--}}
-{{--                                                    <br>--}}
-{{--                                                </td>--}}
                                             </tr>
                                         @endforeach
                                     </tbody>
-{{--                                    <tfoot>--}}
-{{--                                        <tr>--}}
-{{--                                            <td><button data-repeater-create class="btn btn-success" type="button" >+</button></td>--}}
-{{--                                        </tr>--}}
-{{--                                    </tfoot>--}}
                                 </table>
 
                                 <div class="mb-3">
@@ -90,4 +68,3 @@
     </div>
 </div>
 @include('includes.footer')
-<script src="{{asset('assets/js/repeater.js')}}"></script>

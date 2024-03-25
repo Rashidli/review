@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ThingService extends Model
 {
+
     use HasFactory, SoftDeletes;
 
     public function things()

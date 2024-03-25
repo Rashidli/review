@@ -53,14 +53,15 @@ class RegionController extends Controller
 
         $region->save();
 
-        $region_cars = $request->region_cars;
-
+        $region_car_ids = $request->car_id;
+        $minPrices = $request->min_price;
+        $maxPrices = $request->max_price;
         $regionCarData = [];
 
-        foreach ($region_cars as $region_car) {
-            $regionCarData[$region_car['car_id']] = [
-                'min_price' => $region_car['min_price'],
-                'max_price' => $region_car['max_price'],
+        foreach ($region_car_ids as $index => $region_car_Id) {
+            $regionCarData[$region_car_Id] = [
+                'max_price' => $maxPrices[$index],
+                'min_price' => $minPrices[$index],
             ];
         }
 
@@ -94,6 +95,8 @@ class RegionController extends Controller
     public function update(Request $request, Region $region)
     {
 
+
+
         $request->validate([
             'title'=>'required',
         ]);
@@ -104,14 +107,15 @@ class RegionController extends Controller
 
         $region->save();
 
-        $region_cars = $request->region_cars;
-
+        $region_car_ids = $request->car_id;
+        $minPrices = $request->min_price;
+        $maxPrices = $request->max_price;
         $regionCarData = [];
 
-        foreach ($region_cars as $region_car) {
-            $regionCarData[$region_car['car_id']] = [
-                'min_price' => $region_car['min_price'],
-                'max_price' => $region_car['max_price'],
+        foreach ($region_car_ids as $index => $region_car_Id) {
+            $regionCarData[$region_car_Id] = [
+                'max_price' => $maxPrices[$index],
+                'min_price' => $minPrices[$index],
             ];
         }
 

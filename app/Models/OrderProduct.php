@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Worker extends Model
+class OrderProduct extends Model
 {
-    use HasFactory, SoftDeletes;
+
+    use HasFactory;
+    protected $guarded = [];
 
 }

@@ -47,27 +47,26 @@ class PlanWarehouseController extends Controller
         DB::beginTransaction();
 
         try {
-//            $request->validate([
-//                'title' => 'required',
-//                'plan_warehouse.*.plan_warehouse_plan_id' => 'required',
-//                'plan_warehouse.*.min_price' => 'nullable|numeric',
-//                'plan_warehouse.*.max_price' => 'nullable|numeric',
-//            ]);
+
 
             $plan_warehouse = new PlanWarehouse();
             $plan_warehouse->title = $request->title;
             $plan_warehouse->save();
 
-            $plans = $request->plans;
+            $planIds = $request->plan_id;
+            $monthPrices = $request->monthly_price;
+            $dayPrices = $request->daily_price;
+            $monthlyPricePerSquareMeter = $request->monthly_price_per_square_meter;
+            $dailyPricePerSquareMeter = $request->daily_price_per_square_meter;
 
             $planData = [];
 
-            foreach ($plans as $plan) {
-                $planData[$plan['plan_id']] = [
-                    'monthly_price' => $plan['monthly_price'],
-                    'daily_price' => $plan['daily_price'],
-                    'monthly_price_per_square_meter' => isset($plan['monthly_price_per_square_meter']),
-                    'daily_price_per_square_meter' => isset($plan['daily_price_per_square_meter']),
+            foreach ($planIds as $index => $plan_id) {
+                $planData[$plan_id] = [
+                    'monthly_price' => $monthPrices[$index],
+                    'daily_price' => $dayPrices[$index],
+                    'monthly_price_per_square_meter' => isset($monthlyPricePerSquareMeter[$index]),
+                    'daily_price_per_square_meter' => isset($dailyPricePerSquareMeter[$index]),
                 ];
             }
 
@@ -111,30 +110,27 @@ class PlanWarehouseController extends Controller
 
     public function update(Request $request, $id)
     {
-
         DB::beginTransaction();
 
         try {
-//            $request->validate([
-//                'title' => 'required',
-//                'plan_warehouse.*.min_price' => 'nullable|numeric',
-//                'plan_warehouse.*.max_price' => 'nullable|numeric',
-//            ]);
-
             $plan_warehouse = PlanWarehouse::findOrFail($id);
             $plan_warehouse->title = $request->title;
             $plan_warehouse->save();
 
-            $plans = $request->plans;
+            $planIds = $request->plan_id;
+            $monthPrices = $request->monthly_price;
+            $dayPrices = $request->daily_price;
+            $monthlyPricePerSquareMeter = $request->monthly_price_per_square_meter;
+            $dailyPricePerSquareMeter = $request->daily_price_per_square_meter;
 
             $planData = [];
 
-            foreach ($plans as $plan) {
-                $planData[$plan['plan_id']] = [
-                    'monthly_price' => $plan['monthly_price'],
-                    'daily_price' => $plan['daily_price'],
-                    'monthly_price_per_square_meter' => isset($plan['monthly_price_per_square_meter']),
-                    'daily_price_per_square_meter' => isset($plan['daily_price_per_square_meter']),
+            foreach ($planIds as $index => $plan_id) {
+                $planData[$plan_id] = [
+                    'monthly_price' => $monthPrices[$index],
+                    'daily_price' => $dayPrices[$index],
+                    'monthly_price_per_square_meter' => isset($monthlyPricePerSquareMeter[$index]),
+                    'daily_price_per_square_meter' => isset($dailyPricePerSquareMeter[$index]),
                 ];
             }
 
@@ -148,6 +144,7 @@ class PlanWarehouseController extends Controller
             return $exception->getMessage();
         }
     }
+
 
 
     /**

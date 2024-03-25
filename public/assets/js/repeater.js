@@ -1017,33 +1017,33 @@
 
 /*end of jquery repater   */
 
-$(document).ready(function () {
-    'use strict';
-    window.id = 0;
-
-    $('.repeater').repeater(
-        {
-            defaultValues: {
-                'id': window.id,
-
-            },
-            show: function () {
-                $(this).slideDown();
-                // console.log($(this).find('input')[1]);
-                $('#cat-id').val(window.id);
-            },
-            hide: function (deleteElement) {
-                window.id--;
-                $('#cat-id').val(window.id);
-                $(this).slideUp(deleteElement);
-                // console.log($('.repeater').repeaterVal());
-            },
-            ready: function (setIndexes) {
-
-
-            }
-        }
-    );
-
-
-});
+// $(document).ready(function () {
+//     'use strict';
+//     window.id = 0;
+//
+//     $('.repeater').repeater(
+//         {
+//             defaultValues: {
+//                 'id': window.id,
+//
+//             },
+//             show: function () {
+//                 $(this).slideDown();
+//                 // console.log($(this).find('input')[1]);
+//                 $('#cat-id').val(window.id);
+//             },
+//             hide: function (deleteElement) {
+//                 window.id--;
+//                 $('#cat-id').val(window.id);
+//                 $(this).slideUp(deleteElement);
+//                 // console.log($('.repeater').repeaterVal());
+//             },
+//             ready: function (setIndexes) {
+//
+//
+//             }
+//         }
+//     );
+//
+//
+// });

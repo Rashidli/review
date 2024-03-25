@@ -31,6 +31,7 @@
     <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="{{asset('assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
+
     <style>
         .custom-table {
             width: 100%;
@@ -64,7 +65,7 @@
             width: 17%; /* Set the width for the first 4 td elements */
         }
 
-        .custom-table td:nth-last-child(-n+4) {
+        .custom-table td:nth-last-child(-n+6) {
             width: 8%; /* Set the width for the last 4 td elements */
         }
 
@@ -86,6 +87,16 @@
 
         .custom-table button.btn-success {
             background-color: #28a745; /* Create button color */
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
         }
     </style>
 </head>
@@ -221,6 +232,7 @@
                             <span>Usta xidmətləri</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
+                            <li> <a href="{{route('products.index')}}">Məhsullar</a></li>
                             <li> <a href="{{route('thing_services.index')}}">Xidmətlər</a></li>
                             <li> <a href="{{route('things.index')}}">Ümumi qiymətləndirmə</a></li>
                         </ul>
